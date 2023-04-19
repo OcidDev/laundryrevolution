@@ -9,7 +9,7 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('dashboard/assets/images/fav-laundry.png') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/images/fav-laundry.png') }}">
 
 		<!-- Bootstrap css -->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -34,12 +34,12 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="{{ asset('dashboard/assets/images/logo-laundry.png') }}" alt="" height="100">
+                                                <img src="{{ asset('assets/images/logo-laundry.png') }}" alt="" height="100">
                                             </span>
                                         </a>
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="{{ asset('dashboard/assets/images/logo-laundry.png') }}" alt="" height="100">
+                                                <img src="{{ asset('assets/images/logo-laundry.png') }}" alt="" height="100">
                                             </span>
                                         </a>
                                     </div>
@@ -85,20 +85,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-0">
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Login') }}
-                                            </button>
-                                            @if (Route::has('register'))
-                                                <a class="btn btn-link" href="{{ route('register') }}">
-                                                    {{ __('Register') }}
-                                                </a>
-                                            @endif
-                                        </div>
+                                    <div class="text-center d-grid">
+                                        <button class="btn btn-primary" type="submit"> Log In </button>
                                     </div>
+
                                 </form>
-                                    {{-- End Bawaan --}}
+                                <div class="text-center mt-3">
+                                    <p> <a href="{{ route('password.request') }}">Forgot your password?</a></p>
+                                    <p>Don't have an account? <a href="{{ route('register') }}" class="ms-1"><b>Sign
+                                                Up</b></a></p>
+                                </div>
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
