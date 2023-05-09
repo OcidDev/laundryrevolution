@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('busines_users_id')->nullable();
             $table->string('no_member')->unique()->default(NULL);
             $table->string('marking_kode')->nullable()->default(NULL);
             $table->string('fullname');
@@ -40,6 +41,7 @@ return new class extends Migration
             // $table->string('harga_saham')->nullable();
             // $table->string('sisa_saham')->nullable();
             $table->rememberToken();
+
             $table->softDeletes();
             $table->timestamps();
         });
