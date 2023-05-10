@@ -70,11 +70,19 @@
                                 </ul>
                             </div>
                         </li>
-                        {{-- <li>
-                            <a href="{{ route('transaction.index') }}"><i data-feather="airplay"></i>
-                                <span> Transaction </span>
+
+                        <li>
+                            <a href="{{ route('member.index') }}"><i data-feather="airplay"></i>
+                                <span> Member </span>
                             </a>
-                        </li> --}}
+                        </li>
+
+                        <li>
+                            <a href="{{ route('business.index') }}"><i data-feather="airplay"></i>
+                                <span> Rencana Outlet </span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- End Sidebar -->

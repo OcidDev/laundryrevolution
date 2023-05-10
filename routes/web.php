@@ -1,6 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BusinesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +24,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::resource('/member', MemberController::class);
+Route::resource('/busines', BusinesController::class);
+Route::resource('/report', ReportController::class);
+
+
