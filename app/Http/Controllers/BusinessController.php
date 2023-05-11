@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 Use Alert;
 use DataTables;
 
@@ -16,29 +17,20 @@ class BusinessController extends Controller
      */
     public function index()
     {
+        // $query = Business::all();
+        // dd($query);
         if (request()->ajax()) {
-            $query = Business::query();
+            $query = Business::all();
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
                     return
-                        '<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Aksi
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="' . route('business.edit', $item->id) . '"">Edit</a></li>
-                                    <li>
-                                        <form action="' . route('business.destroy', $item->id) . '" method="POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                            <button type="submit" class="dropdown-item text-danger">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
+                        '<div class="d-flex ms-auto">
+                        <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
+                        <form action="' . route('business.destroy', $item->id) . '" method="POST">
+                        ' . method_field('delete') . csrf_field() . '
+                        <button type="submit" class="btn btn-danger"> Hapus </button>
+                        </form>
                         </div>';
 
                     })
@@ -63,7 +55,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        //
+        return view('be.pages.business.create');
     }
 
     /**
@@ -74,7 +66,37 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'foto1'             =>'image|required',
+            'foto2'             =>'image|required',
+            'foto3'             =>'image|required',
+            'foto4'             =>'image|required',
+            'foto5'             =>'image|required',
+            'foto6'             =>'image|required',
+            'vidio_yt'          =>'string|required',
+            'nama_outlet'       =>'string|required',
+            'alamat'            =>'string|required',
+            'kota'              =>'string|required',
+            'waktu_bep'         =>'string|required',
+            'estimasi_bep'      =>'string|required',
+            'proposal'          =>'image|required',
+            'total_saham'       =>'numeric|required',
+            'harga_saham'       =>'numeric|required',
+            'saham_terjual'     =>'numeric|required',
+        ]);
+
+
+        $data['foto1'] = $request->file('foto1')->store('assets/photo', 'public');
+        $data['foto2'] = $request->file('foto2')->store('assets/photo', 'public');
+        $data['foto3'] = $request->file('foto3')->store('assets/photo', 'public');
+        $data['foto4'] = $request->file('foto4')->store('assets/photo', 'public');
+        $data['foto5'] = $request->file('foto5')->store('assets/photo', 'public');
+        $data['foto6'] = $request->file('foto6')->store('assets/photo', 'public');
+        $data['proposal'] = $request->file('proposal')->store('assets/photo', 'public');
+
+        Business::create($data);
+        toast()->success('Create has been success');
+        return redirect()->route('business.index');
     }
 
     /**
@@ -85,7 +107,8 @@ class BusinessController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Business::FindOrFail($id);
+        return view('be.pages.business.show',compact('item'));
     }
 
     /**
@@ -96,7 +119,7 @@ class BusinessController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -119,6 +142,9 @@ class BusinessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Business::findOrFail($id);
+        $item->delete();
+        toast()->error('Deleted has been success');
+        return redirect()->route('business.index');
     }
 }

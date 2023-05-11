@@ -1,6 +1,6 @@
 @extends('layouts.be-app')
 
-@section('title', ' Member')
+@section('title', 'List Rencana Outlet')
 @push('before-style')
     <link href="/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">Data Member</h4>
+                            <h4 class="page-title">Data Outlet</h4>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     @if (Auth::User()->role == 'ADMIN')
                         <div class="col d-flex flex-row">
                             <a class="btn btn-sm btn-success text-right position-relative"
-                                href="{{ route('member.create') }}" role="button">Tambah Data</a>
+                                href="{{ route('business.create') }}" role="button">Tambah Data</a>
                         </div>
                     @endif
                 </div>

@@ -28,6 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/member', MemberController::class);
 Route::resource('/business', BusinessController::class);
+Route::resource('/mentoring', MentorController::class);
 Route::resource('/report', ReportController::class);
 
 

@@ -42,7 +42,7 @@
             <!-- ============================================================== -->
 
             <div class="content-page">
-                <div class="content vh-100">
+                <div class="content">
 
                     <!-- Start Content-->
                     @yield('content')
