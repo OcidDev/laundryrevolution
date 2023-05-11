@@ -19,36 +19,10 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $cari = User::all();
-
         if (request()->ajax()) {
             $query = User::query();
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
-                //     $admin = '<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                //     <div class="btn-group" role="group">
-                //         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                //         Aksi
-                //         </button>
-                //         <ul class="dropdown-menu">
-                //             <li><a class="dropdown-item btn btn-primary" href="' . route('edit', $item->id) . '"">Edit</a></li>
-                //             <li>
-                //                 <form action="' . route('destroy', $item->id) . '" method="POST">
-                //                 ' . method_field('delete') . csrf_field() . '
-                //                     <button type="submit" class="dropdown-item text-danger">
-                //                         Hapus
-                //                     </button>
-                //                 </form>
-                //             </li>
-                //             <li>
-                //             <a class="dropdown-item" href="' . ($item->status == 'NONAKTIF' ? route('member.accept', $item->id) : route('member.reject', $item->id) ) . '">' . ($item->status == 'NONAKTIF' ? 'Aktifkan' : 'Nonaktifkan') . '</a>
-
-                //             </li>
-                //         </ul>
-                //     </div>
-                // </div>';
-                // $user = 'No Action';
-                // return Auth::user()->role == 'ADMIN' ? $admin : $user ;
                     return '
                     <div class="d-flex ms-auto">
                     <a href="' . route('member.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
@@ -60,7 +34,7 @@ class MemberController extends Controller
                     })
                     ->editColumn('no_whatsapp',function($item){
                         return '
-                        <a href="https://wa.me/'.$item->no_whatsapp.'" type="button" class="btn btn-success">Hubungi</a>
+                        <a href="https://wa.me/'. $item->no_whatsapp .'" type="button" class="btn btn-success">Hubungi</a>
                         ';
                     })
                     ->rawColumns(['no_whatsapp','action'])
