@@ -47,7 +47,7 @@
 
                         <li class="menu-title">Navigation</li>
                         {{-- Menu Dashboard --}}
-                        <li>
+                        {{-- <li>
                             <a href="#sidebarDashboards" data-bs-toggle="collapse">
                                 <i data-feather="airplay"></i>
                                 <span class="badge bg-success rounded-pill float-end">4</span>
@@ -56,7 +56,7 @@
                             <div class="collapse" id="sidebarDashboards">
                                 <ul class="nav-second-level">
                                     <li>
-                                        <a href="index.html">Dashboard 1</a>
+                                        <a href="{{route('home')}}">Dashboard 1</a>
                                     </li>
                                     <li>
                                         <a href="dashboard-2.html">Dashboard 2</a>
@@ -69,6 +69,12 @@
                                     </li>
                                 </ul>
                             </div>
+                        </li> --}}
+
+                        <li>
+                            <a href="{{ route('home') }}"><i data-feather="airplay"></i>
+                                <span> Dashboard </span>
+                            </a>
                         </li>
 
                         <li>

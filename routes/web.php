@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BusinessController;
 
