@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\BusinesController;
+use App\Http\Controllers\BusinessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/member', MemberController::class);
-Route::resource('/busines', BusinesController::class);
+Route::resource('/business', BusinessController::class);
 Route::resource('/report', ReportController::class);
 
 

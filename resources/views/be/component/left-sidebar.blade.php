@@ -84,13 +84,13 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('busines.index') }}"><i data-feather="airplay"></i>
+                            <a href="{{ route('business.index') }}"><i data-feather="airplay"></i>
                                 <span> Rencana Outlet </span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('busines.index') }}"><i data-feather="airplay"></i>
+                            <a href="{{ route('business.index') }}"><i data-feather="airplay"></i>
                                 <span> Laporan Outlet </span>
                             </a>
                         </li>

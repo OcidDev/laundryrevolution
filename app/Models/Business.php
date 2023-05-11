@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Busines extends Model
+class Business extends Model
 {
     use HasFactory,SoftDeletes;
 
@@ -16,7 +16,6 @@ class Busines extends Model
         'foto3',
         'foto4',
         'foto5',
-        'foto6',
         'foto6',
         'vidio_yt',
         'nama_outlet',
@@ -29,5 +28,4 @@ class Busines extends Model
         'harga_saham',
         'saham_terjual'
     ];
-
 }

@@ -101,68 +101,36 @@
                     url: '{!! url()->current() !!}',
                 },
 
-                columns: [{
-                        data: 'no_member',
-                        name: 'no_member'
+                columns: [
+                    { data:'nama_outlet', name:'nama_outlet'},
+                    {
+                        data:'foto1',
+                        name:'foto1',
+                        orderable:false,
+                        searchable:false,
+                        ordering: false,
+                        width:'100px',
+                        height: '50px',
+                    },
+                    { data:'alamat', name:'alamat'},
+                    { data:'kota', name:'kota'},
+                    { data:'waktu_bep', name:'waktu_bep'},
+                    {
+                        data:'gabung',
+                        name:'gabung',
+                        orderable:false,
+                        searchable:false,
+                        ordering: false,
                     },
                     {
-                        data: 'marking_kode',
-                        name: 'marking_kode'
-                    },
-                    {
-                        data: 'fullname',
-                        name: 'fullname'
-                    },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
-                    {
-                        data: 'no_whatsapp',
-                        name: 'no_whatsapp'
-                    },
-                    {
-                        data: 'kota',
-                        name: 'kota'
-                    },
-                    {
-                        data: 'kota_ws',
-                        name: 'kota_ws'
-                    },
-                    {
-                        data: 'usaha',
-                        name: 'usaha'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        width: '150px'
+                        data:'action',
+                        name:'action',
+                        orderable:false,
+                        searchable:false,
+                        width:'150px'
                     },
                 ]
             });
-
-            function delay(callback, ms) {
-                var timer = 0;
-                return function() {
-                    var context = this,
-                        args = arguments;
-                    clearTimeout(timer);
-                    timer = setTimeout(function() {
-                        callback.apply(context, args);
-                    }, ms || 0);
-                };
-            }
-            $('#cari').keyup(delay(function(e) {
-                datatable.column(5)
-                    .search($('.filter-input-kota').val()),
-
-                    datatable.column(6)
-                    .search($('.filter-input-kota-ws').val())
-                    .draw();
-            }, 1500));
-
         });
     </script>
 @endpush

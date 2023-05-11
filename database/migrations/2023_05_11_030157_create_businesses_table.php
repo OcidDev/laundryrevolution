@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('busines', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('busines_users_id')->nullable();
             $table->string('foto1')->nullable()->default(NULL);
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('busines');
+        Schema::dropIfExists('businesses');
     }
 };
