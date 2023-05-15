@@ -84,7 +84,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('member.index') }}"><i data-feather="airplay"></i>
+                            <a href="{{ route('mentoring.index') }}"><i data-feather="airplay"></i>
                                 <span> Mentoring </span>
                             </a>
                         </li>
@@ -96,7 +96,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('business.index') }}"><i data-feather="airplay"></i>
+                            <a href="{{ route('report.index') }}"><i data-feather="airplay"></i>
                                 <span> Laporan Outlet </span>
                             </a>
                         </li>
