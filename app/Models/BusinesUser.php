@@ -2,10 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Business;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BusinesUser extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'users_id',
+        'busines_id'
+    ];
+
+    /**
+     * Get all of the business for the BusinesUser
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function business_access(): HasMany
+    {
+        return $this->hasMany(Business::class, 'busines_id', 'id');
+    }
+
+    public function user_access(): HasMany
+    {
+        return $this->hasMany(User::class, 'users_id', 'id');
+    }
 }

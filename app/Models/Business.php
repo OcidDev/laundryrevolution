@@ -11,6 +11,7 @@ class Business extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = [
+        'busines_users_id',
         'foto1',
         'foto2',
         'foto3',
@@ -28,4 +29,17 @@ class Business extends Model
         'harga_saham',
         'saham_terjual'
     ];
+
+    /**
+     * Get the access that owns the Business
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function access(): BelongsTo
+    {
+        return $this->belongsTo(BusinessUser::class, 'busines_users_id', 'id');
+    }
+
+
+
 }

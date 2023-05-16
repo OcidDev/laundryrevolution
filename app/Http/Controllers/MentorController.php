@@ -49,7 +49,7 @@ class MentorController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('be.pages.mentoring.show');
     }
 
     /**

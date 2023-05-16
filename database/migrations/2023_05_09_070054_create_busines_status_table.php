@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('busines_users', function (Blueprint $table) {
+        Schema::create('report_status', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id');
-            $table->foreignId('busines_id');
+            $table->foreignId('reports_id');
+            $table->enum('status', ['denny', 'allow'])->default('denny');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('busines_users');
+        Schema::dropIfExists('report_status');
     }
 };

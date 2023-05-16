@@ -25,4 +25,5 @@ class Report extends Model
     {
         return $this->belongsTo(Business::class, 'business_id', 'id');
     }
+
 }
