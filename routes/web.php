@@ -7,6 +7,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\BusinessUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/member', MemberController::class);
 Route::resource('/business', BusinessController::class);
+Route::resource('/business_user', BusinessUserController::class);
 Route::resource('/mentoring', MentorController::class);
 Route::resource('/report', ReportController::class);
 

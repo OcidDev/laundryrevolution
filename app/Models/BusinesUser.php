@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Business;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,12 +21,12 @@ class BusinesUser extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function business_access(): HasMany
+    public function business(): HasMany
     {
         return $this->hasMany(Business::class, 'busines_id', 'id');
     }
 
-    public function user_access(): HasMany
+    public function users(): HasMany
     {
         return $this->hasMany(User::class, 'users_id', 'id');
     }

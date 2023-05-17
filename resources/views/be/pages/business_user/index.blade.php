@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">Data Outlet</h4>
+                            <h4 class="page-title">User Akses Outlet</h4>
                         </div>
                     </div>
                 </div>
@@ -39,10 +39,7 @@
                     @if (Auth::User()->role == 'ADMIN')
                         <div class="col d-flex flex-row">
                             <a class="btn btn-sm btn-success text-right me-2 position-relative"
-                                href="{{ route('business.create') }}" role="button">Tambah Data Outlet</a>
-
-                            <a class="btn btn-sm btn-success text-right position-relative"
-                                href="{{ route('business_user.create') }}" role="button">Tambah Data Akses User</a>
+                                href="{{ route('business_user.create') }}" role="button">Tambah Data User Akses Outlet</a>
                         </div>
                     @endif
                 </div>
@@ -56,10 +53,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nama Outlet</th>
-                                            <th>Foto Tempat</th>
-                                            <th>Alamat</th>
-                                            <th>kota</th>
-                                            <th>Estimasi waktu BEP</th>
+                                            <th>Nama User</th>
                                             <th>Detail</th>
                                             <th>Action</th>
                                         </tr>
@@ -105,26 +99,8 @@
                 },
 
                 columns: [
-                    { data:'nama_outlet', name:'nama_outlet'},
-                    {
-                        data:'foto1',
-                        name:'foto1',
-                        orderable:false,
-                        searchable:false,
-                        ordering: false,
-                        width:'100px',
-                        height: '50px',
-                    },
-                    { data:'alamat', name:'alamat'},
-                    { data:'kota', name:'kota'},
-                    { data:'waktu_bep', name:'waktu_bep'},
-                    {
-                        data:'gabung',
-                        name:'gabung',
-                        orderable:false,
-                        searchable:false,
-                        ordering: false,
-                    },
+                    { data:'fullname', name:'fullname'},
+                    { data:'business.nama_oulte', name:'business.nama_oulte'},
                     {
                         data:'action',
                         name:'action',
