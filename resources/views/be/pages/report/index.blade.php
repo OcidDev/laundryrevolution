@@ -102,7 +102,7 @@
 
                 columns: [
                     { data:'date', name:'date'},
-                    { data:'report.nama_outlet', name:'report.nama_outlet'},
+                    { data:'nama_outlet', name:'nama_outlet'},
                     { data:'penjualan', name:'penjualan', },
                     { data:'pengeluaran', name:'pengeluaran'},
                     { data:'stor_bank', name:'stor_bank'},

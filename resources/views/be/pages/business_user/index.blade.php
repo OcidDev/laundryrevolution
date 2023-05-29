@@ -52,9 +52,9 @@
                                 <table id="DataTables" class="table table-hover table-striped table-bordered nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>Nama Outlet</th>
                                             <th>Nama User</th>
-                                            <th>Detail</th>
+                                            <th>Nama Outlet</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -99,8 +99,9 @@
                 },
 
                 columns: [
-                    { data:'fullname', name:'fullname'},
-                    { data:'business.nama_oulte', name:'business.nama_oulte'},
+                    { data:'users.fullname', name:'users.fullname'},
+                    { data:'business.nama_outlet', name:'business.nama_outlet'},
+                    { data:'status', name:'status'},
                     {
                         data:'action',
                         name:'action',

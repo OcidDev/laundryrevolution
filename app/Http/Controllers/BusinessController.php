@@ -24,12 +24,13 @@ class BusinessController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Business::all();
+            $query = Business::query();
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
                     return
                         '<div class="d-flex ms-auto">
+                        <a href="'.route('business.show',$item->id).'" type="button" class="btn me-1 btn-success">Detail</a>
                         <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
                         <form action="' . route('business.destroy', $item->id) . '" method="POST">
                         ' . method_field('delete') . csrf_field() . '
@@ -38,15 +39,15 @@ class BusinessController extends Controller
                         </div>';
 
                     })
-                    ->addColumn('gabung',function($item){
+                    ->addColumn('report',function($item){
                         return '
-                        <a href="'.route('business.show',$item->id).'" type="button" class="btn btn-success">Detail</a>
+                        <a href="#" type="button" class="btn btn-success">Lihat Laporan</a>
                         ';
                     })
                     ->editColumn('foto1',function($item){
                         return $item->foto1 ? '<img class=" w-300 img-thumbnail" src="'.Storage::url($item->foto1).'">' : '';
                     })
-                    ->rawColumns(['action','foto1','gabung'])
+                    ->rawColumns(['action','foto1','report'])
                     ->make();
             }
         return view('be.pages.business.index');

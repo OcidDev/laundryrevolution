@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Business extends Model
@@ -30,16 +31,13 @@ class Business extends Model
         'saham_terjual'
     ];
 
-    /**
-     * Get the access that owns the Business
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function access(): BelongsTo
+    public function access_business(): HasMany
     {
-        return $this->belongsTo(BusinessUser::class, 'busines_users_id', 'id');
+        return $this->hasMany(BusinessUser::class, 'business_id', 'id');
     }
 
-
-
+    public function access_users(): HasMany
+    {
+        return $this->hasMany(BusinessUser::class, 'users_id', 'id');
+    }
 }

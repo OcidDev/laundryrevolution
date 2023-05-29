@@ -60,7 +60,7 @@
                                             <th>Alamat</th>
                                             <th>kota</th>
                                             <th>Estimasi waktu BEP</th>
-                                            <th>Detail</th>
+                                            <th>Laporan Keuangan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -119,8 +119,8 @@
                     { data:'kota', name:'kota'},
                     { data:'waktu_bep', name:'waktu_bep'},
                     {
-                        data:'gabung',
-                        name:'gabung',
+                        data:'report',
+                        name:'report',
                         orderable:false,
                         searchable:false,
                         ordering: false,

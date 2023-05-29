@@ -34,125 +34,36 @@
                     </div>
                 </div>
                 <!-- end page title -->
-
+                <div class="row mb-3">
+                    <div class="col-12">
+                        @if (Auth::User()->role == 'ADMIN')
+                            <a class="btn btn-primary" href="{{ route('mentoring.create') }}" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Tambah Vidio
+                            </a>
+                        @endif
+                    </div>
+                </div>
                 <div class="row">
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
+                    @foreach ($items as $item)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->name }}">
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ $item->name }}</h3>
+                                    <p class="card-text"> {{ $item->description }}</p>
+                                    <a href="{{ route('mentoring.show', $item->id) }}" class="btn btn-primary">Lihat
+                                        Vidio</a>
+                                    <form action="{{ route('mentoring.destroy', $item->id) }}" class="mt-1" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <a class="btn btn-warning" href="{{ route('mentoring.edit',$item->id) }}" role="button">Edit</a>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="https://shootnesia.foresteract.com/wp-content/uploads/2021/07/Pengertian-dan-Jenis-Fotografi-Landscape.webp"
-                                class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul Video Mentoring</h5>
-                                <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, ea.
-                                </p>
-                                <a href="{{ route('mentoring.show',1) }}" class="btn btn-primary">Lihat Vidio</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 

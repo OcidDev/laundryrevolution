@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">Judul Video Mentoring</h4>
+                            <h4 class="page-title">{{ $item->name }}</h4>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <div class="ratio ratio-16x9 text-center">
                                     <iframe class="embed-responsive-item"
-                                        src="https://www.youtube.com/embed/DTpvdyzxQWE?controls=0"
+                                        src="https://www.youtube.com/embed/{{ $item->vidio_yt }}"
                                         style="max-width: 100%;height: 100%;" allowfullscreen></iframe>
                                 </div>
 

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('image');
+            $table->string('video_yt');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

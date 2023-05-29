@@ -1,5 +1,5 @@
 @extends('layouts.be-app')
-@section('title', ' Tambah Data Member')
+@section('title', ' Tambah Data Mentor')
 
 @section('content')
 
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Tambah Data Member</h4>
+                        <h4 class="page-title">Tambah Data Mentor</h4>
                     </div>
                 </div>
             </div>
@@ -33,91 +33,46 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="needs-validation" method="POST" action="{{ route('member.store') }}" novalidate>
+                            <form class="needs-validation" method="POST" action="{{ route('mentoring.store') }}"
+                                enctype="multipart/form-data" novalidate>
                                 @csrf
-                                {{-- <div class="mb-3">
-                                    <label for="no" class="form-label">Nomor Member</label>
-
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div> --}}
-
-                                <div class="mb-3">
-                                    <label for="fullname" class="form-label">Nama Lengkap</label>
-                                    <input type="hidden" readonly value="{{ 'LD-' . $kd }}" name="no_member"
-                                        class="form-control" id="no" required />
-                                    <input type="hidden" readonly value="memberpassword" name="passwrod"
-                                        class="form-control" required />
-                                    <input type="hidden" readonly value="memberpassword" name="passwrod_confirm"
-                                        class="form-control" required />
-                                    <input type="text" name="fullname" class="form-control" id="fullname"
-                                        placeholder="Masukan nama lengkap" value="{{ old('fullname') }}" required />
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
 
 
                                 <div class="mb-3">
-                                    <label for="marking_kode" class="form-label">Marking Kode</label>
-                                    <div class="input-group">
-                                        <input type="marking_kode" name="marking_kode" class="form-control"
-                                            id="marking_kode" placeholder="marking kode"
-                                            aria-describedby="inputGroupPrepend" value="{{ old('marking_kode') }}"
-                                            required />
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <div class="input-group">
-                                        <input type="email" name="email" class="form-control" id="email"
-                                            placeholder="Email" aria-describedby="inputGroupPrepend"
-                                            value="{{ old('email') }}" required />
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="no_wa" class="form-label">Nomor WhatsApp</label>
-                                    <input type="number" name="no_whatsapp" class="form-control" id="no_wa"
-                                        placeholder="628xxxxxx" value="{{ old('no_wa') }}" required />
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="kota" class="form-label">Kota</label>
-                                    <input type="text" name="kota" class="form-control" id="kota"
-                                        placeholder="Kota Tmepat Tinggal" value="{{ old('kota') }}" required />
+                                    <label for="name" class="form-label">Judul Vidio</label>
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Kota Mengikuti Workshop" value="{{ old('name') }}" required />
                                     <div class="invalid-feedback">
-                                        Please provide a valid city.
+                                        Please provide a valid Judul Vidio.
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="kota_ws" class="form-label">Kota Workshop</label>
-                                    <input type="text" name="kota_ws" class="form-control" id="kota_ws"
-                                        placeholder="Kota Mengikuti Workshop" value="{{ old('kota_ws') }}" required />
+                                    <label for="description" class="form-label">Deskripsi Vidio</label>
+                                    <input type="text" name="description" class="form-control" id="description"
+                                        placeholder="description yang sedang di tekuni saat ini"
+                                        value="{{ old('description') }}" required />
                                     <div class="invalid-feedback">
-                                        Please provide a valid Kota Workshop.
+                                        Please provide a valid deskripsi vidio.
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="usaha" class="form-label">Bidang Usaha</label>
-                                    <input type="text" name="usaha" class="form-control" id="usaha"
-                                        placeholder="Usaha yang sedang di tekuni saat ini" value="{{ old('usaha') }}"
+                                    <label for="vidio_yt" class="form-label">Link Vidio</label>
+                                    <input type="text" name="vidio_yt" class="form-control" id="vidio_yt"
+                                        placeholder="vidio_yt yang sedang di tekuni saat ini" value="{{ old('vidio_yt') }}"
                                         required />
                                     <div class="invalid-feedback">
-                                        Please provide a valid Bidang Usaha.
+                                        Please provide a valid deskripsi vidio.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Thumbnail Vidio</label>
+                                    <input name="image" class="form-control  form-control-sm" id="formFileSm"
+                                        type="file">
+                                    <div class="invalid-feedback">
+                                        Please provide a valid deskripsi vidio.
                                     </div>
                                 </div>
 

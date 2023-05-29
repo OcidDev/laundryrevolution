@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('users_id');
             $table->foreignId('business_id');
-            $table->enum('status', ['true', 'false'])->default('false');
+            $table->string('status');
             $table->timestamps();
         });
     }

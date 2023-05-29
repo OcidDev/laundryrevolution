@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mentor;
 use Illuminate\Http\Request;
 
 class MentorController extends Controller
@@ -17,7 +18,8 @@ class MentorController extends Controller
     }
     public function index()
     {
-        return view('be.pages.mentoring.index');
+        $items = Mentor::all();
+        return view('be.pages.mentoring.index',compact('items'));
     }
 
     /**
@@ -27,7 +29,7 @@ class MentorController extends Controller
      */
     public function create()
     {
-        //
+        return view('be.pages.mentoring.create');
     }
 
     /**
@@ -38,7 +40,17 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'vidio_yt' => 'required|string',
+            'image' => 'required|image',
+        ]);
+
+        $data['image'] = $request->file('image')->store('assets/image', 'public');
+        Mentor::Create($data);
+        toast()->success('Create has been success');
+        return redirect()->route('mentoring.index');
     }
 
     /**
@@ -49,7 +61,8 @@ class MentorController extends Controller
      */
     public function show($id)
     {
-        return view('be.pages.mentoring.show');
+        $item = Mentor::find($id);
+        return view('be.pages.mentoring.show',compact('item'));
     }
 
     /**

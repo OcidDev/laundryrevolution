@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
+use App\Models\User;
+use App\Models\Business;
 use App\Models\BusinesUser;
 use Illuminate\Http\Request;
-use DataTables;
+
 class BusinessUserController extends Controller
 {
     /**
@@ -14,8 +17,10 @@ class BusinessUserController extends Controller
      */
     public function index()
     {
+        // $query = BusinesUser::with('business','users')->get();
+        // dd($query);
         if (request()->ajax()) {
-            $query = BusinesUser::with('business','users');
+            $query = BusinesUser::with('business','users')->get();
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -42,7 +47,9 @@ class BusinessUserController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $businesses = Business::all();
+        return view('be.pages.business_user.create',compact('users','businesses'));
     }
 
     /**
@@ -53,7 +60,14 @@ class BusinessUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'users_id' => 'required',
+            'business_id' => 'required',
+        ]);
+        $data['status'] = 'AKTIF' ;
+        BusinesUser::Create($data);
+        toast()->success('Create has been success');
+        return redirect()->route('business_user.index');
     }
 
     /**
