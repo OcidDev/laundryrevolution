@@ -4,11 +4,11 @@
 
                 <!-- User box -->
                 <div class="user-box text-center">
-                    <img src="{{ asset('assets/images/users/user-6.jpg') }}" alt="user-img"
-                        title="Mat Helme" class="rounded-circle avatar-md">
+                    <img src="{{ asset('assets/images/users/user-6.jpg') }}" alt="user-img" title="Mat Helme"
+                        class="rounded-circle avatar-md">
                     <div class="dropdown">
                         <a href="javascript: void(0);" class="text-black dropdown-toggle h5 mt-2 mb-1 d-block"
-                            data-bs-toggle="dropdown">Stanley Parker</a>
+                            data-bs-toggle="dropdown">{{ Auth::user()->fullname }}</a>
                         <div class="dropdown-menu user-pro-dropdown">
 
                             <!-- item-->
@@ -37,7 +37,7 @@
 
                         </div>
                     </div>
-                    <p class="text-muted">Admin Head</p>
+                    <p class="text-muted">{{ Auth::user()->usaha }}</p>
                 </div>
 
                 <!--- Sidemenu -->
@@ -76,12 +76,13 @@
                                 <span> Dashboard </span>
                             </a>
                         </li>
-
-                        <li>
-                            <a href="{{ route('member.index') }}"><i data-feather="airplay"></i>
-                                <span> Member </span>
-                            </a>
-                        </li>
+                        @if (Auth::User()->role == 'ADMIN')
+                            <li>
+                                <a href="{{ route('member.index') }}"><i data-feather="airplay"></i>
+                                    <span> Member </span>
+                                </a>
+                            </li>
+                        @endif
 
                         <li>
                             <a href="{{ route('mentoring.index') }}"><i data-feather="airplay"></i>

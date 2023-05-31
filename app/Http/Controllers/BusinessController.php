@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
 use App\Models\Business;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 Use Alert;
-use DataTables;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BusinessController extends Controller
 {
@@ -28,20 +29,25 @@ class BusinessController extends Controller
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
-                    return
-                        '<div class="d-flex ms-auto">
-                        <a href="'.route('business.show',$item->id).'" type="button" class="btn me-1 btn-success">Detail</a>
-                        <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
-                        <form action="' . route('business.destroy', $item->id) . '" method="POST">
-                        ' . method_field('delete') . csrf_field() . '
-                        <button type="submit" class="btn btn-danger"> Hapus </button>
-                        </form>
-                        </div>';
+                        if (Auth::user()->role =='ADMIN'){
+                            return
+                            '<div class="d-flex ms-auto">
+                            <a href="'.route('business.show',$item->id).'" type="button" class="btn me-1 btn-success">Detail</a>
+                            <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
+                            <form action="' . route('business.destroy', $item->id) . '" method="POST">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger"> Hapus </button>
+                            </form>
+                            </div>';
+                        }else{
+                            return
+                            '<a href="'.route('business.show',$item->id).'" type="button" class="btn me-1 btn-success">Detail</a>';
+                        };
 
                     })
                     ->addColumn('report',function($item){
                         return '
-                        <a href="#" type="button" class="btn btn-success">Lihat Laporan</a>
+                        <a href="' . route('business_user.show',$item->id) . '" type="button" class="btn btn-success">Lihat Laporan</a>
                         ';
                     })
                     ->editColumn('foto1',function($item){
@@ -151,5 +157,66 @@ class BusinessController extends Controller
         $item->delete();
         toast()->error('Deleted has been success');
         return redirect()->route('business.index');
+    }
+
+    public function report($id){
+        $admin = Auth::user()->role == 'ADMIN';
+        $auth_id = Auth::user()->id;
+
+        if($admin == TRUE){
+            if (request()->ajax()) {
+                $query = DB::table('reports')
+                ->select('reports.id','date', 'businesses.nama_outlet', 'penjualan', 'pengeluaran', 'stor_bank')
+                ->join('businesses','reports.business_id','=','businesses.id')
+                ->get();
+
+                return Datatables::of($query)
+                    ->addColumn('action', function ($item) {
+                        return
+                            '<div class="d-flex ms-auto">
+                            <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
+                            <form action="' . route('business.destroy', $item->id) . '" method="POST">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger"> Hapus </button>
+                            </form>
+                            </div>';
+
+                        })
+                        ->editColumn('penjualan', 'Rp {{ number_format($penjualan) }}' )
+                        ->editColumn('pengeluaran', 'Rp {{ number_format($pengeluaran) }}' )
+                        ->editColumn('stor_bank', 'Rp {{ number_format($stor_bank) }}' )
+                        ->rawColumns(['action'])
+                        ->make();
+            }
+        }else{
+            if (request()->ajax()) {
+                $query = DB::table('reports')
+                ->select('reports.id','date', 'businesses.nama_outlet', 'penjualan', 'pengeluaran', 'stor_bank')
+                ->join('businesses','reports.business_id','=','businesses.id')
+                ->join('busines_users','businesses.id','=','busines_users.business_id')
+                ->where('busines_users.status','=','AKTIF')
+                ->where('busines_users.users_id','=',$auth_id)
+                ->get();
+
+                return Datatables::of($query)
+                    ->addColumn('action', function ($item) {
+                        return
+                            '<div class="d-flex ms-auto">
+                            <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
+                            <form action="' . route('business.destroy', $item->id) . '" method="POST">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger"> Hapus </button>
+                            </form>
+                            </div>';
+
+                        })
+                        ->editColumn('penjualan', 'Rp {{ number_format($penjualan) }}' )
+                        ->editColumn('pengeluaran', 'Rp {{ number_format($pengeluaran) }}' )
+                        ->editColumn('stor_bank', 'Rp {{ number_format($stor_bank) }}' )
+                        ->rawColumns(['action'])
+                        ->make();
+            }
+        }
+        return view('be.pages.business.report');
     }
 }

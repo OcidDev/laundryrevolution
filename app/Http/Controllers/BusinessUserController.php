@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Business;
 use App\Models\BusinesUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BusinessUserController extends Controller
 {
@@ -78,7 +80,66 @@ class BusinessUserController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = Auth::user()->role == 'ADMIN';
+        $auth_id = Auth::user()->id;
+
+        if($admin == TRUE){
+            if (request()->ajax()) {
+                $query = DB::table('reports')
+                ->select('reports.id','date', 'businesses.nama_outlet', 'penjualan', 'pengeluaran', 'stor_bank')
+                ->join('businesses','reports.business_id','=','businesses.id')
+                ->where('business_id','=',$id)
+                ->get();
+
+                return Datatables::of($query)
+                    ->addColumn('action', function ($item) {
+                        return
+                            '<div class="d-flex ms-auto">
+                            <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
+                            <form action="' . route('business.destroy', $item->id) . '" method="POST">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger"> Hapus </button>
+                            </form>
+                            </div>';
+
+                        })
+                        ->editColumn('penjualan', 'Rp {{ number_format($penjualan) }}' )
+                        ->editColumn('pengeluaran', 'Rp {{ number_format($pengeluaran) }}' )
+                        ->editColumn('stor_bank', 'Rp {{ number_format($stor_bank) }}' )
+                        ->rawColumns(['action'])
+                        ->make();
+            }
+        }else{
+            if (request()->ajax()) {
+                $query = DB::table('reports')
+                ->select('reports.id','date', 'businesses.nama_outlet', 'penjualan', 'pengeluaran', 'stor_bank')
+                ->join('businesses','reports.business_id','=','businesses.id')
+                ->join('busines_users','businesses.id','=','busines_users.business_id')
+                ->where('busines_users.status','=','AKTIF')
+                ->where('busines_users.users_id','=',$auth_id)
+                ->where('busines_users.business_id','=',$id)
+                ->get();
+
+                return Datatables::of($query)
+                    ->addColumn('action', function ($item) {
+                        return
+                            '<div class="d-flex ms-auto">
+                            <a href="' . route('business.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
+                            <form action="' . route('business.destroy', $item->id) . '" method="POST">
+                            ' . method_field('delete') . csrf_field() . '
+                            <button type="submit" class="btn btn-danger"> Hapus </button>
+                            </form>
+                            </div>';
+
+                        })
+                        ->editColumn('penjualan', 'Rp {{ number_format($penjualan) }}' )
+                        ->editColumn('pengeluaran', 'Rp {{ number_format($pengeluaran) }}' )
+                        ->editColumn('stor_bank', 'Rp {{ number_format($stor_bank) }}' )
+                        ->rawColumns(['action'])
+                        ->make();
+            }
+        }
+        return view('be.pages.business.report');
     }
 
     /**

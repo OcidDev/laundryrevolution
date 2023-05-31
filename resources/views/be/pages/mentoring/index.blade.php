@@ -37,8 +37,7 @@
                 <div class="row mb-3">
                     <div class="col-12">
                         @if (Auth::User()->role == 'ADMIN')
-                            <a class="btn btn-primary" href="{{ route('mentoring.create') }}" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="btn btn-primary" href="{{ route('mentoring.create') }}">
                                 Tambah Vidio
                             </a>
                         @endif
@@ -46,7 +45,7 @@
                 </div>
                 <div class="row">
                     @foreach ($items as $item)
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="card">
                                 <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->name }}">
                                 <div class="card-body">
@@ -54,12 +53,16 @@
                                     <p class="card-text"> {{ $item->description }}</p>
                                     <a href="{{ route('mentoring.show', $item->id) }}" class="btn btn-primary">Lihat
                                         Vidio</a>
-                                    <form action="{{ route('mentoring.destroy', $item->id) }}" class="mt-1" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <a class="btn btn-warning" href="{{ route('mentoring.edit',$item->id) }}" role="button">Edit</a>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </form>
+                                    @if (Auth::user()->role == 'ADMIN')
+                                        <form action="{{ route('mentoring.destroy', $item->id) }}" class="mt-1"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <a class="btn btn-warning" href="{{ route('mentoring.edit', $item->id) }}"
+                                                role="button">Edit</a>
+                                            <button type="button" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
