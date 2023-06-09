@@ -89,7 +89,7 @@
                                 <span> Mentoring </span>
                             </a>
                         </li>
-{{--
+
                         <li>
                             <a href="{{ route('business.index') }}"><i data-feather="airplay"></i>
                                 <span> Rencana Outlet </span>
@@ -100,7 +100,7 @@
                             <a href="{{ route('report.index') }}"><i data-feather="airplay"></i>
                                 <span> Laporan Outlet </span>
                             </a>
-                        </li> --}}
+                        </li>
 
                     </ul>
                 </div>
