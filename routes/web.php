@@ -29,10 +29,10 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/member', MemberController::class);
-Route::resource('/business', BusinessController::class);
-Route::resource('/business_user', BusinessUserController::class);
+// Route::resource('/business', BusinessController::class);
+// Route::resource('/business_user', BusinessUserController::class);
 // Route::get('/business/report/{$id}', [BusinessController::class, 'report'])->name('bsuiness.report');
 Route::resource('/mentoring', MentorController::class);
-Route::resource('/report', ReportController::class);
+// Route::resource('/report', ReportController::class);
 
 

@@ -23,7 +23,7 @@
                         </li>
 
                         {{-- notification --}}
-                        <li class="dropdown notification-list topbar-dropdown">
+                        {{-- <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="fe-bell noti-icon"></i>
@@ -118,7 +118,7 @@
                                 </a>
 
                             </div>
-                        </li>
+                        </li> --}}
 
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light"
@@ -131,7 +131,7 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                                <!-- item-->
+                                {{-- <!-- item-->
                                 <div class="dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
@@ -152,7 +152,7 @@
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="fe-lock"></i>
                                     <span>Lock Screen</span>
-                                </a>
+                                </a> --}}
 
                                 <div class="dropdown-divider"></div>
 
@@ -172,11 +172,11 @@
                             </div>
                         </li>
 
-                        <li class="dropdown notification-list">
+                        {{-- <li class="dropdown notification-list">
                             <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
                                 <i class="fe-settings noti-icon"></i>
                             </a>
-                        </li>
+                        </li> --}}
 
                     </ul>
 

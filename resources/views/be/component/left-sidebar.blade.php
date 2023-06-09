@@ -71,11 +71,11 @@
                             </div>
                         </li> --}}
 
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('home') }}"><i data-feather="airplay"></i>
                                 <span> Dashboard </span>
                             </a>
-                        </li>
+                        </li> --}}
                         @if (Auth::User()->role == 'ADMIN')
                             <li>
                                 <a href="{{ route('member.index') }}"><i data-feather="airplay"></i>
@@ -89,7 +89,7 @@
                                 <span> Mentoring </span>
                             </a>
                         </li>
-
+{{--
                         <li>
                             <a href="{{ route('business.index') }}"><i data-feather="airplay"></i>
                                 <span> Rencana Outlet </span>
@@ -100,7 +100,7 @@
                             <a href="{{ route('report.index') }}"><i data-feather="airplay"></i>
                                 <span> Laporan Outlet </span>
                             </a>
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </div>
