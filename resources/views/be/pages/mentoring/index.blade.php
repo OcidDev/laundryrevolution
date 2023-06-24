@@ -54,13 +54,15 @@
                                     <a href="{{ route('mentoring.show', $item->id) }}" class="btn btn-primary">Lihat
                                         Vidio</a>
                                     @if (Auth::user()->role == 'ADMIN')
+
                                         <form action="{{ route('mentoring.destroy', $item->id) }}" class="mt-1"
                                             method="post">
-                                            @csrf
-                                            @method('delete')
                                             <a class="btn btn-warning" href="{{ route('mentoring.edit', $item->id) }}"
                                                 role="button">Edit</a>
-                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            @csrf
+                                            @method('delete')
+
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     @endif
                                 </div>

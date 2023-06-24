@@ -107,6 +107,8 @@ class MentorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Mentor::find($id)->delete();
+        toast()->success('Delete has been success');
+        return redirect()->route('mentoring.index');
     }
 }
