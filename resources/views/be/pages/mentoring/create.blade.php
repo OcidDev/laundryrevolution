@@ -41,7 +41,7 @@
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Judul Vidio</label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Kota Mengikuti Workshop" value="{{ old('name') }}" required />
+                                        placeholder="Judul Vidio Mentoring" value="{{ old('name') }}" required />
                                     <div class="invalid-feedback">
                                         Please provide a valid Judul Vidio.
                                     </div>
@@ -50,7 +50,7 @@
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Deskripsi Vidio</label>
                                     <input type="text" name="description" class="form-control" id="description"
-                                        placeholder="description yang sedang di tekuni saat ini"
+                                        placeholder="Deskripsi Vidio Mentoring"
                                         value="{{ old('description') }}" required />
                                     <div class="invalid-feedback">
                                         Please provide a valid deskripsi vidio.
@@ -60,19 +60,19 @@
                                 <div class="mb-3">
                                     <label for="vidio_yt" class="form-label">Link Vidio</label>
                                     <input type="text" name="vidio_yt" class="form-control" id="vidio_yt"
-                                        placeholder="vidio_yt yang sedang di tekuni saat ini" value="{{ old('vidio_yt') }}"
+                                        placeholder="URL Vidio" value="{{ old('vidio_yt') }}"
                                         required />
                                     <div class="invalid-feedback">
-                                        Please provide a valid deskripsi vidio.
+                                        Please provide a valid link vidio.
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Thumbnail Vidio</label>
+                                    <label for="image" class="form-label">Gambar Thumbnail Vidio</label>
                                     <input name="image" class="form-control  form-control-sm" id="formFileSm"
                                         type="file">
                                     <div class="invalid-feedback">
-                                        Please provide a valid deskripsi vidio.
+                                        Please provide a valid thumbnail vidio.
                                     </div>
                                 </div>
 
