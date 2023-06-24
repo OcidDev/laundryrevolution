@@ -23,17 +23,32 @@ class MemberController extends Controller
     }
     public function index()
     {
+
         if (request()->ajax()) {
             $query = User::query();
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
+
+                    if($item->status == 'AKTIF'){
+                        $tomAktif = '<form action="' . route('member.reject', $item->id) . '" method="POST">
+                        ' . method_field('put') . csrf_field() . '
+                        <button type="submit" class="btn btn-danger"> Nonaktifkan </button>
+                        </form>';
+                    }else if($item->status == 'NONAKTIF'){
+                        $tomAktif = '<form action="' . route('member.accept', $item->id) . '" method="POST">
+                        ' . method_field('put') . csrf_field() . '
+                        <button type="submit" class="btn btn-success"> Aktifkan </button>
+                        </form>';
+                    }
+
                     return '
                     <div class="d-flex ms-auto">
                     <a href="' . route('member.edit',$item->id) . '" class="btn btn-warning me-1"> Edit </a>
                     <form action="' . route('member.destroy', $item->id) . '" method="POST">
                     ' . method_field('delete') . csrf_field() . '
-                    <button type="submit" class="btn btn-danger"> Hapus </button>
+                    <button type="submit" class="btn btn-danger me-1"> Hapus </button>
                     </form>
+                    '.$tomAktif.'
                     </div>';
                     })
                     ->editColumn('no_whatsapp',function($item){
