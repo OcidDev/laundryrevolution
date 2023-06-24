@@ -73,7 +73,8 @@ class MentorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Mentor::find($id);
+        return view('be.pages.mentoring.edit',compact('item'));
     }
 
     /**
@@ -85,7 +86,17 @@ class MentorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Mentor::find($id);
+        $data = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'vidio_yt' => 'required|string',
+        ]);
+
+        $data['image'] = ($request->image == NULL) ? $item->image : $request->file('image')->store('assets/image', 'public');
+        Mentor::find($id)->update($data);
+        toast()->success('Update has been success');
+        return redirect()->route('mentoring.index');
     }
 
     /**
